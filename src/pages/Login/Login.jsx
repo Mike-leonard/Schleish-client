@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 
 const Login = () => {
     return (
@@ -12,8 +13,7 @@ const Login = () => {
                     <p className="text-sm mt-4 font-medium leading-none text-gray-500">
                         Dont have account?{" "}
                         <span tabIndex={0} role="link" aria-label="Sign up here" className="text-sm font-medium leading-none underline text-gray-800 cursor-pointer">
-                            {" "}
-                            Sign up here
+                            <Link to="/register">Sign up here</Link>
                         </span>
                     </p>
                     <button aria-label="Continue with google" role="button" className="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-10">
