@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Header = () => {
 
     const user = {}
-    user.email = 'aa@aa.aa'
+    //user.email = 'aa@aa.aa'
     const navItems = <>
         <li><Link to="/">Home</Link> </li>
         <li> <Link to="/about">All Toys</Link> </li>
