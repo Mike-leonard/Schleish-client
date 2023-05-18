@@ -1,11 +1,50 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthProvider";
 
+
+//TODO : Svg need to replace 
 
 const Login = () => {
+
+    const { signIn, signInWithGoogle } = useContext(AuthContext);
+
+    const handleLogin = event => {
+        event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        signIn(email, password)
+            .then(result => {
+                const loggedUser = result.user;
+                form.reset()
+                //navigate(from, { replace: true })
+            })
+            .catch(error => {
+                 console.log(error);
+               // toast.error(error.message)
+               //TODO: toast need to implement
+            })
+    }
+
+    const handleGoogleSignIn = () => {
+        signInWithGoogle()
+            .then((result) => {
+                const user = result.user;
+                //navigate(from, { replace: true })
+            })
+            .catch(error => {
+                //toast.error(error.message)
+                // TODO: toast needed
+            })
+            
+    }
+
+
     return (
         <div className="h-full bg-gradient-to-tl from-green-400 to-indigo-900 w-full py-16 px-4">
             <div className="flex flex-col items-center justify-center">
-               
                 <div className="bg-white shadow rounded lg:w-1/3  md:w-1/2 w-full p-10">
                     <p tabIndex={0} role="heading" aria-label="Login to your account" className="text-2xl font-extrabold leading-6 text-gray-800">
                         Login to your account

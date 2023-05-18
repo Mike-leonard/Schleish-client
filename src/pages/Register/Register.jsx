@@ -1,7 +1,40 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthProvider';
 
 const Register = () => {
+    const { createUser, userProfileUpdate } = useContext(AuthContext);
+
+    const handleRegister = event => {
+        event.preventDefault();
+        const form = event.target;
+        const name = form.name.value;
+        const photo = form.photo.value;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        if (password.length < 6) {
+            toast.error('Password should be 6 or more characters long')
+            return;
+        }
+        createUser(email, password)
+            .then(result => {
+                const createdUser = result.user;
+                if (createdUser !== null) {
+                    userProfileUpdate(createdUser, name, photo)
+                        .then(() => {
+                            form.reset()
+                        })
+                        .catch(err => console.log(err))
+                }
+                console.log(createdUser);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
+
     return (
         <div className="h-full bg-gradient-to-tl from-green-400 to-indigo-900 w-full py-16 px-4">
             <div className="flex flex-col items-center justify-center">
