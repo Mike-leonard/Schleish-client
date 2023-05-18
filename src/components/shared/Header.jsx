@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthProvider';
 
 const Header = () => {
 
-    const user = {}
-    //user.email = 'aa@aa.aa'
+    const { user, logOut } = useContext(AuthContext)
+
+    const handleLogout = () => {
+        logOut()
+            .then()
+            .catch(error => console.log(error));
+    }
     const navItems = <>
         <li><Link to="/">Home</Link> </li>
         <li> <Link to="/about">All Toys</Link> </li>
@@ -43,12 +49,12 @@ const Header = () => {
             <div className="navbar-end">
                 {user?.email ?
                     <>
-                        <div className="avatar mr-4">
+                        <div className="avatar mr-4 tooltip tooltip-bottom cursor-pointer" data-tip={user.displayName}>
                             <div className="w-12 rounded-full">
-                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" />
+                                <img src={user ? user?.photoURL : "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"} />
                             </div>
                         </div>
-                        <button className="btn" onClick={'handleLogout'}>Log out</button>
+                        <button className="btn" onClick={handleLogout}>Log out</button>
                     </> :
                     <Link to="/login"><button className="btn">Login</button></Link>
 
