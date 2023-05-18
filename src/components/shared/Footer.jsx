@@ -1,5 +1,7 @@
 import React from "react";
 
+
+// TODO: footer text need to to replace
 //TODO: svg will be replaced with react icons
 // TODO: try to implement this design later https://tailwinduikit.com/components/E-commerce/Components/footers/footer_IX
 const Footer = () => {
