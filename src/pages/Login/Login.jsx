@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import GoogleButton from "../../components/svg/GoogleButton";
 import { btnGoogleStaticClassName, btnLoginOrRegisterStaticClassName, inputStaticClassName } from "../../utils/duplicateClassName/deplicateClassName";
@@ -8,7 +8,10 @@ import PasswordEye from "../../components/svg/PasswordEye";
 
 const Login = () => {
 
-    const { signIn, signInWithGoogle } = useContext(AuthContext);
+    const { signIn, signInWithGoogle } = useContext(AuthContext)
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from?.pathname || '/'
 
     const handleLogin = event => {
         event.preventDefault();
@@ -20,7 +23,7 @@ const Login = () => {
             .then(result => {
                 const loggedUser = result.user;
                 form.reset()
-                //navigate(from, { replace: true })
+                navigate(from, { replace: true })
             })
             .catch(error => {
                 console.log(error);
@@ -29,11 +32,12 @@ const Login = () => {
             })
     }
 
+    // TODO: need to add this
     const handleGoogleSignIn = () => {
         signInWithGoogle()
             .then((result) => {
                 const user = result.user;
-                //navigate(from, { replace: true })
+                navigate(from, { replace: true })
             })
             .catch(error => {
                 //toast.error(error.message)
