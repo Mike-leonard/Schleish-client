@@ -48,7 +48,7 @@ const Footer = () => {
                 <label className="text-xl font-medium leading-5 text-gray-800">Get updates</label>
                 <div className="flex items-center justify-between border border-gray-800 mt-4">
                     <input type="text" className="text-base leading-4 p-4 relative z-0 w-full focus:outline-none text-gray-800 placeholder-gray-800" placeholder="Enter your email" />
-                    <div className="cursor-pointer mr-4 cursor-pointer relative z-40">
+                    <div className=" mr-4 cursor-pointer relative z-40">
                         <GetUpdate />
                     </div>
                 </div>

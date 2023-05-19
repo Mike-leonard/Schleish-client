@@ -13,7 +13,7 @@ const Header = () => {
     }
     const navItems = <>
         <li><Link to="/">Home</Link> </li>
-        <li> <Link to="/about">All Toys</Link> </li>
+        <li> <Link to="/all-toys">All Toys</Link> </li>
 
         {user?.email ?
             <>
