@@ -1,19 +1,46 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ProductEdit from '../../components/modals/ProductEdit';
+import PerToyRow from './PerToyRow';
+import { AuthContext } from '../../context/AuthProvider';
 
-
-const imgUrl = "https://i.postimg.cc/PqYpFTfy/pexels-melvin-buezo-2529148.jpg"
 const MyToys = () => {
-    const [selectedProductId, setSelectedProductId] = useState(null)
+    const { user } = useContext(AuthContext)
+    const [myToy, setMyToy] = useState([])
+
+    const url = `http://localhost:3000/toys?email=${user?.email}`
+    useEffect(() => {
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                setMyToy(data)
+            })
+    }, [url])
+
+    const handleDelete = id => {
+        const proceed = confirm('Are You sure you want to delete?')
+        if (proceed) {
+            fetch(`http://localhost:3000/toy/${id}`, {
+                method: 'DELETE',
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    if (data.deletedCount > 0) {
+                        alert('Deleted Successful.')
+                        const remaining = myToy.filter(toy => toy._id !== id)
+                        setMyToy(remaining)
+                    }
+                })
+        }
+    }
 
     return (
-        <div className="overflow-x-auto w-full">
+        <div className="overflow-x-auto w-full px-5">
             <table className="table w-full">
-                {/* head */}
                 <thead>
                     <tr>
                         <th>
-                           Delete
+                            Delete
                         </th>
                         <th>Toy Name</th>
                         <th>Price</th>
@@ -22,37 +49,10 @@ const MyToys = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* row 1 */}
-                    <tr>
-                        <th>
-                            <button className='btn rounded-full btn-outline btn-secondary text-xl'>
-                                X
-                            </button>
-                        </th>
-                        <td>
-                            <div className="flex items-center space-x-3">
-                                <div className="avatar cursor-pointer">
-                                    <div className="mask mask-squircle w-12 h-12">
-                                        <img src={imgUrl} alt="Avatar Tailwind CSS Component" />
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="font-bold">Hart Hagerty</div>
-                                    <div className="text-sm opacity-50">United States</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            Zemlak, Daniel and Leannon
-                            <br />
-                            <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
-                        </td>
-                        <td>Purple</td>
-                        <th>
-                            <label htmlFor="my-modal-6" className="btn btn-outline btn-primary" /* onClick={() => openModal(4)} */>Edit</label>
-                            
-                        </th>
-                    </tr>
+                    {
+                        myToy.map(toy => <PerToyRow key={toy._id} toy={toy} handleDelete={handleDelete}></PerToyRow>)
+                    }
+                   
                 </tbody>
             </table>
 

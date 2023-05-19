@@ -12,10 +12,9 @@ const ProductDetails = ({ selectedProductId, closeModal }) => {
         fetch(url)
             .then(res => res.json())
             .then(data => setToy(data))
-    }, [url, selectedProductId])
+    }, [url])
 
     const { _id, toyName, photo, price, quantity, seller, sellerEmail, category, pdDetails } = toy
-    console.log(toy)
     return (
         <div>
             <input type="checkbox" id="my-modal-5" className="modal-toggle" />
