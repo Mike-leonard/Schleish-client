@@ -30,7 +30,7 @@ const AllToys = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-4 mx-8">
                 <div className="lg:mr-7 lg:mb-0 mb-7 bg-white p-6 shadow rounded">
                     <div className="flex items-center border-b border-gray-200 pb-6">
-                        <img src="https://cdn.tuk.dev/assets/components/misc/doge-coin.png" alt className="w-36 h-36 rounded-full cursor-pointer" />
+                        <img src="https://cdn.tuk.dev/assets/components/misc/doge-coin.png" alt='' className="w-36 h-36 rounded-full cursor-pointer" />
                         <div className='w-full'>
                             <div className="flex justify-between">
                                 <div className="flex flex-col flex-1 pl-3">
