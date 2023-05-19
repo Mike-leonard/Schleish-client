@@ -12,8 +12,14 @@ const addToyDisableInputClassName = "text-gray-600 dark:text-gray-400 focus:outl
 const addToyLabelClassName = "text-gray-800 dark:text-gray-100 text-sm font-bold leading-tight tracking-normal mb-2"
 
 const addToyTextArea = "border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 resize-none placeholder-gray-500 text-gray-500 dark:text-gray-400"
+
+//modal
+const bottomImageProductDetailsImgClass="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300"
+
+const modalAddToCartOrWishlist="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300"
+
 export { 
     inputStaticClassName, btnLoginOrRegisterStaticClassName, btnGoogleStaticClassName,
     addToyInputStaticClassName, addToyDisableInputClassName, addToyLabelClassName,
-    addToyTextArea
+    addToyTextArea, bottomImageProductDetailsImgClass, modalAddToCartOrWishlist
 }

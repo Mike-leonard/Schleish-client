@@ -1,9 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import WhiteList from '../../components/svg/WhiteList';
+import ProductDetails from '../../components/modals/ProductDetails';
 
 
 
 const AllToys = () => {
+    const [selectedProductId, setSelectedProductId] = useState(null)
+    const [isModalOpen, setIsModalOpen] = useState(false)
+
+    const openModal = (productId) => {
+        setSelectedProductId(productId)
+        //setIsModalOpen(true)
+        console.log(selectedProductId, productId)
+    };
+
+    const closeModal = () => {
+        setSelectedProductId(null);
+        setIsModalOpen(false);
+    };
+
+    const handleOverlayClick = (event) => {
+        if (event.target === event.currentTarget) {
+          //  closeModal();
+        }
+    };
+
     return (
         <div className="py-8 w-full">
             <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-4 mx-8">
@@ -32,7 +53,9 @@ const AllToys = () => {
                                 <div className="py-2 px-4 text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100">#dogecoin</div>
                                 <div className="py-2 px-4 ml-3 text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100">#crypto</div>
                             </div>
-                            <button className="btn btn-outline btn-primary">Details</button>
+                            {/* <button className="btn btn-outline btn-primary">Details</button> */}
+                            <label htmlFor="my-modal-5" className="btn btn-outline btn-primary" onClick={() => openModal(4)}>Details</label>
+                            { selectedProductId && <ProductDetails productId={selectedProductId} />}
                         </div>
                     </div>
                 </div>
