@@ -39,7 +39,7 @@ const Header = () => {
                         {navItems}
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl">Schleish</a>
+                <Link to="/" className="btn btn-ghost normal-case text-xl">Schleish</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">

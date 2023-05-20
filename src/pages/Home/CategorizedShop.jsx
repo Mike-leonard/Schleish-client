@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import CategorizedCard from '../../components/card/CategorizedCard';
 
 
 const selectedTabClassName = 'text-primary ';
@@ -9,13 +10,12 @@ const selectedTabPanelClassName = 'custom-selected-tab-panel';
 const CategorizedShop = () => {
     const [tabIndex, setTabIndex] = useState(0);
     const [categoryToy, setCategoryToy] = useState([]);
-    console.log(tabIndex)
 
     useEffect(() => {
         let categoryText = ''
-        if(tabIndex === 0)
+        if (tabIndex === 0)
             categoryText = 'horse'
-        else if(tabIndex === 1)
+        else if (tabIndex === 1)
             categoryText = 'dinosaur'
         else
             categoryText = 'cat'
@@ -24,7 +24,7 @@ const CategorizedShop = () => {
         fetch(url)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                setCategoryToy(data)
             })
     }, [tabIndex])
 
@@ -39,64 +39,23 @@ const CategorizedShop = () => {
 
                 <TabPanel>
                     <div className="grid sm:grid-cols-3 gap-3 w-full mt-1">
-                        <div className="card card-compact bg-base-100 shadow-xl">
-                            <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-                            <div className="card-body">
-                                <h2 className="card-title">Shoes!</h2>
-                                <p>If a dog chews shoes whose shoes does he choose?</p>
-                                <div className="card-actions justify-end">
-                                    <button className="btn btn-primary">Buy Now</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="card card-compact bg-base-100 shadow-xl">
-                            <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-                            <div className="card-body">
-                                <h2 className="card-title">Shoes!</h2>
-                                <p>If a dog chews shoes whose shoes does he choose?</p>
-                                <div className="card-actions justify-end">
-                                    <button className="btn btn-primary">Buy Now</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="card card-compact bg-base-100 shadow-xl">
-                            <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-                            <div className="card-body">
-                                <h2 className="card-title">Shoes!</h2>
-                                <p>If a dog chews shoes whose shoes does he choose?</p>
-                                <div className="card-actions justify-end">
-                                    <button className="btn btn-primary">Buy Now</button>
-                                </div>
-                            </div>
-                        </div>
+                        {
+                            categoryToy.map(card => <CategorizedCard key={card._id} card={card}></CategorizedCard>)
+                        }
                     </div>
                 </TabPanel>
                 <TabPanel>
                     <div className="grid sm:grid-cols-3 gap-3 w-full mt-1">
-                        <div className="card card-compact bg-base-100 shadow-xl">
-                            <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-                            <div className="card-body">
-                                <h2 className="card-title">Shoes!</h2>
-                                <p>If a dog chews shoes whose shoes does he choose?</p>
-                                <div className="card-actions justify-end">
-                                    <button className="btn btn-primary">Buy Now</button>
-                                </div>
-                            </div>
-                        </div>
+                        {
+                            categoryToy.map(card => <CategorizedCard key={card._id} card={card}></CategorizedCard>)
+                        }
                     </div>
                 </TabPanel>
                 <TabPanel>
                     <div className="grid sm:grid-cols-3 gap-3 w-full mt-1">
-                        <div className="card card-compact bg-base-100 shadow-xl">
-                            <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-                            <div className="card-body">
-                                <h2 className="card-title">Shoes!</h2>
-                                <p>If a dog chews shoes whose shoes does he choose?</p>
-                                <div className="card-actions justify-end">
-                                    <button className="btn btn-primary">Buy Now</button>
-                                </div>
-                            </div>
-                        </div>
+                        {
+                            categoryToy.map(card => <CategorizedCard key={card._id} card={card}></CategorizedCard>)
+                        }
                     </div>
                 </TabPanel>
             </Tabs>
