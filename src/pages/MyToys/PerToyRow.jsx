@@ -1,7 +1,7 @@
 import React from 'react';
 
 const imgUrl = "https://i.postimg.cc/PqYpFTfy/pexels-melvin-buezo-2529148.jpg"
-const PerToyRow = ({ toy, handleDelete }) => {
+const PerToyRow = ({ toy, handleDelete, openModal }) => {
     //console.log(toy)
     const { _id, toyName, photo, price, quantity, seller, sellerEmail, category, pdDetails } = toy
     return (
@@ -29,8 +29,7 @@ const PerToyRow = ({ toy, handleDelete }) => {
             </td>
             <td>{quantity}</td>
             <th>
-                <label htmlFor="my-modal-6" className="btn btn-outline btn-primary" /* onClick={() => openModal(4)} */>Edit</label>
-
+                <label htmlFor="my-modal-6" className="btn btn-outline btn-primary" onClick={() => openModal(_id)}>Edit</label>
             </th>
         </tr>
     );

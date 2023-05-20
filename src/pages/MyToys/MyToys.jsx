@@ -4,8 +4,23 @@ import PerToyRow from './PerToyRow';
 import { AuthContext } from '../../context/AuthProvider';
 
 const MyToys = () => {
+    const [selectedProductId, setSelectedProductId] = useState(null)
+
     const { user } = useContext(AuthContext)
     const [myToy, setMyToy] = useState([])
+
+    const openModal = (productId) => {
+        setSelectedProductId(productId)
+        //setIsModalOpen(true)
+        //console.log(selectedProductId, productId)
+    };
+
+    const closeModal = () => {
+        setSelectedProductId(null);
+        //setIsModalOpen(false);
+    };
+
+
 
     const url = `http://localhost:3000/toys?email=${user?.email}`
     useEffect(() => {
@@ -34,6 +49,29 @@ const MyToys = () => {
         }
     }
 
+    const tableUpdate = (_id, updateToy) => {
+        fetch(`http://localhost:3000/toy/${_id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updateToy)
+
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.modifiedCount > 0) {
+                    alert('Toy updated successfully')
+                    fetch(url)
+                        .then(res => res.json())
+                        .then(data => {
+                            setMyToy(data)
+                        })
+                }
+            })
+    }
+
     return (
         <div className="overflow-x-auto w-full px-5">
             <table className="table w-full">
@@ -50,13 +88,16 @@ const MyToys = () => {
                 </thead>
                 <tbody>
                     {
-                        myToy.map(toy => <PerToyRow key={toy._id} toy={toy} handleDelete={handleDelete}></PerToyRow>)
+                        myToy.map(toy => <PerToyRow key={toy._id} toy={toy} handleDelete={handleDelete} openModal={openModal}></PerToyRow>)
                     }
-                   
                 </tbody>
             </table>
 
-            <ProductEdit></ProductEdit>
+            {selectedProductId && <ProductEdit
+                selectedProductId={selectedProductId}
+                closeModal={closeModal}
+                tableUpdate={tableUpdate}
+            />}
         </div>
     );
 };
