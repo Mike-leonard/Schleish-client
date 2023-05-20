@@ -16,8 +16,8 @@ const MyToys = () => {
     };
 
     const closeModal = () => {
-        setSelectedProductId(null);
-        //setIsModalOpen(false);
+        setSelectedProductId(null)
+        //setIsModalOpen(false)
     };
 
 

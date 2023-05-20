@@ -10,16 +10,16 @@ const Slider = () => {
     return (
         <Carousel showArrows={true} autoPlay infiniteLoop showStatus={false} showThumbs={false} dynamicHeight={true} >
             <div >
-                <img src={img1} className='h-96' />
+                <img src={img1} className='h-[65vh]' />
             </div>
             <div >
-                <img src={img2} className='h-96' />
+                <img src={img2} className='h-[65vh]' />
             </div>
             <div>
-                <img src={img3} className='h-96' />
+                <img src={img3} className='h-[65vh]' />
             </div>
             <div>
-                <img src={img4} className='h-96' />
+                <img src={img4} className='h-[65vh]' />
             </div>
         </Carousel>
     );
