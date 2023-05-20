@@ -1,14 +1,15 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
-import GoogleButton from '../../components/svg/GoogleButton';
 import PasswordEye from '../../components/svg/PasswordEye';
-import { btnGoogleStaticClassName, btnLoginOrRegisterStaticClassName, inputStaticClassName } from '../../utils/duplicateClassName/deplicateClassName';
+import { btnLoginOrRegisterStaticClassName, inputStaticClassName } from '../../utils/duplicateClassName/deplicateClassName';
+import { toast } from 'react-toastify';
+import SocialLogin from '../Login/SocialLogin';
 
 
 const Register = () => {
     const { createUser, userProfileUpdate } = useContext(AuthContext);
-
+    const navigate = useNavigate()
     const handleRegister = event => {
         event.preventDefault();
         const form = event.target;
@@ -29,13 +30,13 @@ const Register = () => {
                     userProfileUpdate(createdUser, name, photo)
                         .then(() => {
                             form.reset()
+                            navigate('/', { replace: true })
                         })
-                        .catch(err => console.log(err))
+                        .catch(err => toast.log(err))
                 }
-                console.log(createdUser);
             })
             .catch(error => {
-                console.log(error);
+                toast.error(error);
             })
     }
 
@@ -54,10 +55,7 @@ const Register = () => {
                             <Link to="/login">Login</Link>
                         </span>
                     </p>
-                    <button aria-label="Continue with google" role="button" className={btnGoogleStaticClassName}>
-                        <GoogleButton></GoogleButton>
-                        <p className="text-base font-medium ml-4 text-gray-700">Continue with Google</p>
-                    </button>
+                    <SocialLogin></SocialLogin>
 
                     <div className="w-full flex items-center justify-between py-5">
                         <hr className="w-full bg-gray-400" />

@@ -1,7 +1,6 @@
 import React from 'react';
 
 const CategorizedCard = ({ card }) => {
-    console.log(card)
     const { toyName, photo, price, seller } = card
     return (
         <div className="card card-compact bg-base-100 shadow-xl">

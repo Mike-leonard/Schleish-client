@@ -1,17 +1,19 @@
 import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
-import GoogleButton from "../../components/svg/GoogleButton";
-import { btnGoogleStaticClassName, btnLoginOrRegisterStaticClassName, inputStaticClassName } from "../../utils/duplicateClassName/deplicateClassName";
+import { btnLoginOrRegisterStaticClassName, inputStaticClassName } from "../../utils/duplicateClassName/deplicateClassName";
 import PasswordEye from "../../components/svg/PasswordEye";
+import SocialLogin from "./SocialLogin";
+import { toast } from "react-toastify";
 
 
 const Login = () => {
 
-    const { signIn, signInWithGoogle } = useContext(AuthContext)
+    const { signIn } = useContext(AuthContext)
     const navigate = useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || '/'
+    console.log(location)
 
     const handleLogin = event => {
         event.preventDefault();
@@ -26,26 +28,9 @@ const Login = () => {
                 navigate(from, { replace: true })
             })
             .catch(error => {
-                console.log(error);
-                // toast.error(error.message)
-                //TODO: toast need to implement
+                toast.error(error.message)
             })
     }
-
-    // TODO: need to add this
-    const handleGoogleSignIn = () => {
-        signInWithGoogle()
-            .then((result) => {
-                const user = result.user;
-                navigate(from, { replace: true })
-            })
-            .catch(error => {
-                //toast.error(error.message)
-                // TODO: toast needed
-            })
-
-    }
-
 
     return (
         <div className="h-full bg-gradient-to-tl from-green-400 to-indigo-900 w-full py-16 px-4">
@@ -60,10 +45,7 @@ const Login = () => {
                             <Link to="/register">Sign up here</Link>
                         </span>
                     </p>
-                    <button aria-label="Continue with google" role="button" className={btnGoogleStaticClassName}>
-                        <GoogleButton />
-                        <p className="text-base font-medium ml-4 text-gray-700">Continue with Google</p>
-                    </button>
+                    <SocialLogin></SocialLogin>
 
                     <div className="w-full flex items-center justify-between py-5">
                         <hr className="w-full bg-gray-400" />
@@ -74,12 +56,12 @@ const Login = () => {
                     <form onSubmit={handleLogin}>
                         <div>
                             <label className="text-sm font-medium leading-none text-gray-800">Email</label>
-                            <input aria-label="enter email adress" role="input" type="email" className={inputStaticClassName} required name="email"/>
+                            <input aria-label="enter email adress" role="input" type="email" className={inputStaticClassName} required name="email" />
                         </div>
                         <div className="mt-6  w-full">
                             <label className="text-sm font-medium leading-none text-gray-800">Password</label>
                             <div className="relative flex items-center justify-center">
-                                <input aria-label="enter Password" role="input" type="password" className={inputStaticClassName} required name="password"/>
+                                <input aria-label="enter Password" role="input" type="password" className={inputStaticClassName} required name="password" />
                                 <div className="absolute right-0 mt-2 mr-3 cursor-pointer">
                                     <PasswordEye />
                                 </div>

@@ -31,6 +31,8 @@ const MyToys = () => {
             })
     }, [url])
 
+    /* TODO: sw alert dlt confirmation */
+    /* TODO: For all the CRUD operations, show relevant toast/ notification/ anything with a meaningful message */
     const handleDelete = id => {
         const proceed = confirm('Are You sure you want to delete?')
         if (proceed) {
