@@ -1,16 +1,40 @@
 import { useLoaderData } from 'react-router-dom';
 import Toy from './Toy';
+import SearchMethod from './SearchMethod';
+import { useEffect, useState } from 'react';
 
 
 
 const AllToys = () => {
 
     const toys = useLoaderData()
+    const [allToys, setAllToys] = useState(toys)
+    const [searchText, setSearchText] = useState('');
+
+    useEffect(() => {
+        const url = `http://localhost:3000/toys?search=${searchText}`;
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                setAllToys(data);
+            });
+    }, [searchText]);
+
+    const handleSearch = (event) => {
+        event.preventDefault()
+        const form = event.target
+        const inputSearchText = form.inputSearchText.value
+        setSearchText(inputSearchText);
+        form.reset()
+    }
+console.log(allToys)
+
     return (
         <div className="py-8 w-full">
+            <SearchMethod handleSearch={handleSearch}></SearchMethod>
             <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-4 mx-8">
                 {
-                    toys.map(toy => <Toy key={toy._id} toy={toy}></Toy>)
+                    allToys.map(toy => <Toy key={toy._id} toy={toy}></Toy>)
                 }
             </div>
         </div>
