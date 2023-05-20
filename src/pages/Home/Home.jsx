@@ -12,7 +12,6 @@ const Home = () => {
             <Slider/>
             <Gallery/>
             <CategorizedShop/>
-            <Banner/>
             <Featured/>
             <HighLights/>
         </div>
