@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import WhiteList from '../../components/svg/WhiteList';
 import ProductDetails from '../../components/modals/ProductDetails';
+import { AuthContext } from '../../context/AuthProvider';
+import PrivateRoute from '../../routes/PrivateRoute';
+import { toast } from 'react-toastify';
 
 const Toy = ({ toy }) => {
-    //console.log(toy)
-
-    const { _id, toyName, photo, price, quantity, category, pdDetails }  = toy
+    const { user } = useContext(AuthContext)
+    const { _id, toyName, photo, price, quantity, category, pdDetails } = toy
 
     const [selectedProductId, setSelectedProductId] = useState(null)
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -49,13 +51,23 @@ const Toy = ({ toy }) => {
                 <p className="text-sm leading-5 py-4 text-gray-600">{pdDetails}</p>
                 <div className="flex">
                     <div className="flex flex-1 items-center">
-                        <div className="py-2 px-4 text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100">#dogecoin</div>
-                        <div className="py-2 px-4 ml-3 text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100">#crypto</div>
+                        <div className="py-2 px-4 text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100">#pdTag1</div>
+                        <div className="py-2 px-4 ml-3 text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100">#pdTag2</div>
                     </div>
                     {/* <button className="btn btn-outline btn-primary">Details</button> */}
                     <label htmlFor="my-modal-5" className="btn btn-outline btn-primary" onClick={() => openModal(_id)}>Details</label>
-                    {selectedProductId && <ProductDetails selectedProductId={selectedProductId} closeModal={closeModal} />}
-                    
+                    {selectedProductId &&
+                        <PrivateRoute>
+                            {
+                                !user && toast.error('You have to login first to view this page')
+                            }
+                            <ProductDetails
+                                selectedProductId={selectedProductId}
+                                closeModal={closeModal}
+                            />
+                        </PrivateRoute>
+                    }
+
                 </div>
             </div>
         </div>
