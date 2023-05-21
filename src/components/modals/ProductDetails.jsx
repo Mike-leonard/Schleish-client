@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Star from '../svg/Star';
 import { bottomImageProductDetailsImgClass, modalAddToCartOrWishlist } from '../../utils/duplicateClassName/deplicateClassName';
 import Quantity from './modalHealpers/Quantity';
+import { Rating } from '@smastrom/react-rating'
+
 
 const ProductDetails = ({ selectedProductId, closeModal }) => {
 
@@ -14,7 +16,7 @@ const ProductDetails = ({ selectedProductId, closeModal }) => {
             .then(data => setToy(data))
     }, [url])
 
-    const { _id, toyName, photo, price, quantity, seller, sellerEmail, category, pdDetails } = toy
+    const { _id, toyName, photo, price, quantity, seller, rating, sellerEmail, category, pdDetails } = toy
     return (
         <div>
             <input type="checkbox" id="my-modal-5" className="modal-toggle" />
@@ -67,33 +69,9 @@ const ProductDetails = ({ selectedProductId, closeModal }) => {
                                             <span className="text-lg font-medium text-rose-500 dark:text-rose-200">New</span>
                                             <h2 className="max-w-xl mt-2 mb-6 text-2xl font-bold dark:text-gray-400 md:text-4xl">
                                                 {toyName}</h2>
-
-                                            {/* TODO: Dynamic Star */}
-                                            <div className="flex items-center mb-6">
-                                                <ul className="flex mr-2">
-                                                    <li>
-                                                        <a href="#">
-                                                            <Star />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            <Star />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            <Star />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            <Star />
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                                <p className="text-xs dark:text-gray-400 ">(2 customer reviews)</p>
-                                            </div>
+                                            <Rating
+                                                style={{ maxWidth: 120 }}
+                                                readOnly value={parseFloat(rating)} />
                                             <p className="max-w-md mb-8 text-gray-700 dark:text-gray-400">
                                                 {pdDetails}
                                             </p>

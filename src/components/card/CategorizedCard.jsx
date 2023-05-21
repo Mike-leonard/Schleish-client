@@ -3,6 +3,7 @@ import { AuthContext } from '../../context/AuthProvider';
 import PrivateRoute from '../../routes/PrivateRoute';
 import ProductDetails from '../modals/ProductDetails';
 import { toast } from 'react-toastify';
+import { Rating } from '@smastrom/react-rating';
 
 const CategorizedCard = ({ card, openModal, closeModal, selectedProductId }) => {
 
@@ -19,7 +20,11 @@ const CategorizedCard = ({ card, openModal, closeModal, selectedProductId }) => 
                 <div className="flex flex-col sm:flex-row">
 
                     <p>Price: <span className="font-extrabold">${price}</span> </p>
-                    <p>Rating: <span className="font-extrabold">{rating}</span> </p>
+                    <p className="flex flex-row">Rating:
+                        <Rating
+                            style={{ maxWidth: 90 }}
+                            readOnly value={parseFloat(rating)} />
+                    </p>
                 </div>
                 <p>Seller: <span className="font-extrabold">{seller}</span> </p>
                 <div className="card-actions justify-end">
