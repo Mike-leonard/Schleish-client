@@ -4,30 +4,46 @@ import SearchMethod from './SearchMethod';
 import { useEffect, useState } from 'react';
 
 
+/* TODO: need to fix when someone clicks all toys show all toys */
 
 const AllToys = () => {
 
     const toys = useLoaderData()
     const [allToys, setAllToys] = useState(toys)
-    const [searchText, setSearchText] = useState('');
+    const [searchText, setSearchText] = useState('')
 
     useEffect(() => {
-        const url = `http://localhost:3000/toys?search=${searchText}`;
+        console.log('inside')
+        if (searchText === '') {
+            fetchAllToys()
+        } else {
+            fetchToysBySearch()
+        }
+    }, [searchText])
+
+
+    const fetchAllToys = () => {
+       setAllToys(toys)
+    }
+    const fetchToysBySearch = () => {
+        const url = `http://localhost:3000/toys?search=${searchText}`
         fetch(url)
             .then(res => res.json())
             .then(data => {
-                setAllToys(data);
-            });
-    }, [searchText]);
+                setAllToys(data)
+            })
+    }
 
     const handleSearch = (event) => {
         event.preventDefault()
         const form = event.target
         const inputSearchText = form.inputSearchText.value
-        setSearchText(inputSearchText);
+        setSearchText(inputSearchText)
         form.reset()
     }
-console.log(allToys)
+
+   
+console.log(allToys, searchText)
 
     return (
         <div className="py-8 w-full">

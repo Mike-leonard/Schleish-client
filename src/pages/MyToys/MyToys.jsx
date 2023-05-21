@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import ProductEdit from '../../components/modals/ProductEdit';
 import PerToyRow from './PerToyRow';
 import { AuthContext } from '../../context/AuthProvider';
+import Swal from 'sweetalert2';
 
 const MyToys = () => {
     const [selectedProductId, setSelectedProductId] = useState(null)
@@ -34,21 +35,35 @@ const MyToys = () => {
     /* TODO: sw alert dlt confirmation */
     /* TODO: For all the CRUD operations, show relevant toast/ notification/ anything with a meaningful message */
     const handleDelete = id => {
-        const proceed = confirm('Are You sure you want to delete?')
-        if (proceed) {
-            fetch(`http://localhost:3000/toy/${id}`, {
-                method: 'DELETE',
-            })
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data)
-                    if (data.deletedCount > 0) {
-                        alert('Deleted Successful.')
-                        const remaining = myToy.filter(toy => toy._id !== id)
-                        setMyToy(remaining)
-                    }
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:3000/toy/${id}`, {
+                    method: 'DELETE',
                 })
-        }
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        if (data.deletedCount > 0) {
+                            Swal.fire(
+                                'Deleted!',
+                                'Toy has been deleted.',
+                                'success'
+                            )
+                            const remaining = myToy.filter(toy => toy._id !== id)
+                            setMyToy(remaining)
+                        }
+                    })              
+            }
+        })
     }
 
     const tableUpdate = (_id, updateToy) => {
@@ -64,10 +79,15 @@ const MyToys = () => {
             .then(data => {
                 console.log(data)
                 if (data.modifiedCount > 0) {
-                    alert('Toy updated successfully')
                     fetch(url)
                         .then(res => res.json())
                         .then(data => {
+                            Swal.fire({
+                                title: 'Success!',
+                                text: 'Toy updated successfully!',
+                                icon: 'success',
+                                confirmButtonText: 'Okay'
+                            })
                             setMyToy(data)
                         })
                 }

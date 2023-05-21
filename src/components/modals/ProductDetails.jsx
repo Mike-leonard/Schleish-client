@@ -132,7 +132,7 @@ const ProductDetails = ({ selectedProductId, closeModal }) => {
                         </div>
                     </section>
                     <div className="modal-action">
-                        <label htmlFor="my-modal-5" className="btn" onClick={closeModal}>Yay!</label>
+                        <label htmlFor="my-modal-5" className="btn" onClick={closeModal}>Close!</label>
                     </div>
                 </div>
             </div>

@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { addToyDisableInputClassName, addToyInputStaticClassName, addToyLabelClassName, addToyTextArea } from '../../utils/duplicateClassName/deplicateClassName';
 import Select from 'react-select';
 import { AuthContext } from '../../context/AuthProvider';
+import Swal from 'sweetalert2';
 
 
 const ratings = [
@@ -63,12 +64,12 @@ const AddToy = () => {
                 if (data.insertedId) {
                     form.reset()
                     alert('added')
-                    /*  Swal.fire({
+                     Swal.fire({
                          title: 'Success!',
-                         text: 'Coffee Added successfully!',
+                         text: 'New Toy Added successfully!',
                          icon: 'success',
                          confirmButtonText: 'Okay'
-                     }) */
+                     })
                 }
             })
     }

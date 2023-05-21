@@ -79,8 +79,7 @@ const ProductEdit = ({ selectedProductId, closeModal, tableUpdate }) => {
                         </div>
                     </section>
                     <div className="modal-action">
-                        {/* TODO: yay need to replace */}
-                        <label htmlFor="my-modal-6" className="btn" onClick={closeModal}>Yay!</label>
+                        <label htmlFor="my-modal-6" className="btn" onClick={closeModal}>Close!</label>
                     </div>
                 </div>
             </div>
