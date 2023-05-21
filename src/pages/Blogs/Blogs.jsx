@@ -5,7 +5,7 @@ import useTitle from "../../hooks/useTitle";
 const Blogs = () => {
     useTitle('Blogs')
     return (
-        <div id="blog" className="bg-gray-100 px-4 xl:px-0 py-12">
+        <div id="blog" className="bg-gradient-to-tl from-green-300 to-emerald-500 px-4 xl:px-0 py-12">
             <div className="mx-auto container">
                 <h1 className="text-center text-3xl lg:text-5xl tracking-wider text-gray-900">Gather knowledge about programming</h1>
                 <div className="mt-12 lg:mt-24">

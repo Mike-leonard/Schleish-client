@@ -42,7 +42,7 @@ const CategorizedShop = () => {
     }, [tabIndex])
 
     return (
-        <div className="m-5">
+        <div className="p-5 bg-[#c4f7f7]">
             <h3 className="text-center text-4xl my-3">Shop By Category</h3>
             <Tabs onSelect={(index) => setTabIndex(index)}>
                 <TabList className="text-center bg-slate-200 p-0 text-xl" >

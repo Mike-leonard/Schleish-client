@@ -44,7 +44,7 @@ const AllToys = () => {
     }
 
     return (
-        <div className="py-8 w-full">
+        <div className="py-8 w-full bg-gradient-to-tl from-green-300 to-indigo-900">
             <SearchMethod handleSearch={handleSearch} fetchAllToys={fetchAllToys}></SearchMethod>
             <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-4 mx-8">
                 {

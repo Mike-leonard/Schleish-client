@@ -114,7 +114,7 @@ const MyToys = () => {
     }
 
     return (
-        <div className="overflow-x-auto w-full px-5">
+        <div className="overflow-x-auto w-full p-5 bg-gradient-to-tl from-green-300 to-indigo-900">
             <div className="flex justify-center gap-5 mb-2">
                 <button onClick={handleAscending} className="btn">Ascending</button>
                 <button onClick={handleDescending} className="btn">Descending</button>

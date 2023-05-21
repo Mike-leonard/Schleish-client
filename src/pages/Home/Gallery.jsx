@@ -8,7 +8,7 @@ const img6 = "https://i.ebayimg.com/images/g/p1QAAOSwVINifTZu/s-l1600.jpg"
 
 const Gallery = () => {
     return (
-        <div className="container mx-auto px-5 py-2 lg:px-10 cursor-pointer">
+        <div className="mx-auto px-5 py-2 lg:px-10 bg-[#dcfefe]">
             <h3 className="text-center text-4xl my-3">Gallery</h3>
             <div className="-m-1 flex flex-wrap md:-m-2">
                 <div className="flex w-1/2 flex-wrap">

@@ -5,10 +5,11 @@ import AuthProvider from './context/AuthProvider.jsx'
 import { RouterProvider } from 'react-router-dom'
 import router from './routes/Routes'
 
+/* TODO: remove */
 /*                 <style>
                     {`
        body{
-    background: rgb(229 231 235);
+    background: #E5E7EB;
         } 
         `}
                 </style> */

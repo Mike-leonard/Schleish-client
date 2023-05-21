@@ -11,7 +11,7 @@ import Twitter from "../svg/Twitter";
 // TODO: try to implement this design later https://tailwinduikit.com/components/E-commerce/Components/footers/footer_IX
 const Footer = () => {
     return (
-        <div className="py-16 xl:px-20 lg:px-18 sm:px-6 px-4">
+        <div className="py-16 xl:px-20 lg:px-18 sm:px-6 px-4 bg-[#7fe2b7]">
             <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 md:gap-8 gap-4">
                 <div className="flex flex-col flex-shrink-0">
                     <div>
