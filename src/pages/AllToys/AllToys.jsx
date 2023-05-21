@@ -43,12 +43,9 @@ const AllToys = () => {
         form.reset()
     }
 
-
-    console.log(allToys, searchText)
-
     return (
         <div className="py-8 w-full">
-            <SearchMethod handleSearch={handleSearch}></SearchMethod>
+            <SearchMethod handleSearch={handleSearch} fetchAllToys={fetchAllToys}></SearchMethod>
             <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-4 mx-8">
                 {
                     allToys.map(toy => <Toy key={toy._id} toy={toy}></Toy>)
