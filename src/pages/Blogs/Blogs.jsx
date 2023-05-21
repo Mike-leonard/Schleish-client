@@ -1,7 +1,6 @@
 import React from "react";
 import useTitle from "../../hooks/useTitle";
 
-//TODO: theme need to apply on body
 const Blogs = () => {
     useTitle('Blogs')
     return (

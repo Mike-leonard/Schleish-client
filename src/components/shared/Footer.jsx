@@ -5,10 +5,6 @@ import Dribble from "../svg/Dribble";
 import Youtube from "../svg/Youtube";
 import Twitter from "../svg/Twitter";
 
-
-// TODO: footer text need to to replace
-//TODO: svg will be replaced with react icons
-// TODO: try to implement this design later https://tailwinduikit.com/components/E-commerce/Components/footers/footer_IX
 const Footer = () => {
     return (
         <div className="py-16 xl:px-20 lg:px-18 sm:px-6 px-4 bg-[#7fe2b7]">
@@ -42,7 +38,6 @@ const Footer = () => {
                         <GetUpdate />
                     </div>
                 </div>
-                {/* TODO: make it one at the end get update */}
             </div>
             <div className="mt-10 lg:hidden">
                 <label className="text-xl font-medium leading-5 text-gray-800">Get updates</label>

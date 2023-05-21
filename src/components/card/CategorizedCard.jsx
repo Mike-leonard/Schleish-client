@@ -20,11 +20,11 @@ const CategorizedCard = ({ card, openModal, closeModal, selectedProductId }) => 
                 <div className="flex flex-col sm:flex-row">
 
                     <p>Price: <span className="font-extrabold">${price}</span> </p>
-                    <p className="flex flex-row">Rating:
+                    <div className="flex flex-row">Rating:
                         <Rating
                             style={{ maxWidth: 90 }}
                             readOnly value={parseFloat(rating)} />
-                    </p>
+                    </div>
                 </div>
                 <p>Seller: <span className="font-extrabold">{seller}</span> </p>
                 <div className="card-actions justify-end">
