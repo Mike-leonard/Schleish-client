@@ -2,12 +2,13 @@ import { useLoaderData } from 'react-router-dom';
 import Toy from './Toy';
 import SearchMethod from './SearchMethod';
 import { useEffect, useState } from 'react';
+import useTitle from '../../hooks/useTitle';
 
 
 /* TODO: need to fix when someone clicks all toys show all toys */
 
 const AllToys = () => {
-
+    useTitle('All Toys')
     const toys = useLoaderData()
     const [allToys, setAllToys] = useState(toys)
     const [searchText, setSearchText] = useState('')

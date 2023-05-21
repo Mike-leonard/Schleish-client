@@ -5,15 +5,18 @@ import { btnLoginOrRegisterStaticClassName, inputStaticClassName } from "../../u
 import PasswordEye from "../../components/svg/PasswordEye";
 import SocialLogin from "./SocialLogin";
 import { toast } from "react-toastify";
+import useTitle from "../../hooks/useTitle";
 
 
 const Login = () => {
-
+    
+    useTitle('Login')
     const { signIn } = useContext(AuthContext)
     const navigate = useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || '/'
     console.log(location, from)
+
 
     const handleLogin = event => {
         event.preventDefault();

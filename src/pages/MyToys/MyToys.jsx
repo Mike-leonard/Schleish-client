@@ -3,8 +3,10 @@ import ProductEdit from '../../components/modals/ProductEdit';
 import PerToyRow from './PerToyRow';
 import { AuthContext } from '../../context/AuthProvider';
 import Swal from 'sweetalert2';
+import useTitle from '../../hooks/useTitle';
 
 const MyToys = () => {
+    useTitle('My Toys')
     const [selectedProductId, setSelectedProductId] = useState(null)
 
     const { user } = useContext(AuthContext)

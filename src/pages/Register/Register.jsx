@@ -5,9 +5,11 @@ import PasswordEye from '../../components/svg/PasswordEye';
 import { btnLoginOrRegisterStaticClassName, inputStaticClassName } from '../../utils/duplicateClassName/deplicateClassName';
 import { toast } from 'react-toastify';
 import SocialLogin from '../Login/SocialLogin';
+import useTitle from '../../hooks/useTitle';
 
 
 const Register = () => {
+    useTitle('Register')
     const { createUser, userProfileUpdate } = useContext(AuthContext);
     const navigate = useNavigate()
     const handleRegister = event => {

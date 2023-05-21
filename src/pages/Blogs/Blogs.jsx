@@ -1,7 +1,9 @@
 import React from "react";
+import useTitle from "../../hooks/useTitle";
 
 //TODO: theme need to apply on body
 const Blogs = () => {
+    useTitle('Blogs')
     return (
         <div id="blog" className="bg-gray-100 px-4 xl:px-0 py-12">
             <div className="mx-auto container">
