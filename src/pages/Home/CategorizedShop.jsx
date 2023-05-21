@@ -11,6 +11,19 @@ const CategorizedShop = () => {
     const [tabIndex, setTabIndex] = useState(0);
     const [categoryToy, setCategoryToy] = useState([]);
 
+    // for modal
+    const [selectedProductId, setSelectedProductId] = useState(null)
+    const openModal = (productId) => {
+        setSelectedProductId(productId)
+        //setIsModalOpen(true)
+        //console.log(selectedProductId, productId)
+    };
+
+    const closeModal = () => {
+        setSelectedProductId(null);
+        //setIsModalOpen(false);
+    };
+
     useEffect(() => {
         let categoryText = ''
         if (tabIndex === 0)
@@ -20,7 +33,7 @@ const CategorizedShop = () => {
         else
             categoryText = 'cat'
 
-        const url = `http://localhost:3000/toys?category=${categoryText}`
+        const url = `https://schleish-server.vercel.app/toys?category=${categoryText}`
         fetch(url)
             .then(res => res.json())
             .then(data => {
@@ -30,6 +43,7 @@ const CategorizedShop = () => {
 
     return (
         <div className="m-5">
+            <h3 className="text-center text-4xl my-3">Shop By Category</h3>
             <Tabs onSelect={(index) => setTabIndex(index)}>
                 <TabList className="text-center bg-slate-200 p-0 text-xl" >
                     <Tab>Horse</Tab>
@@ -40,21 +54,39 @@ const CategorizedShop = () => {
                 <TabPanel>
                     <div className="grid sm:grid-cols-3 gap-3 w-full mt-1">
                         {
-                            categoryToy.map(card => <CategorizedCard key={card._id} card={card}></CategorizedCard>)
+                            categoryToy.map(card => <CategorizedCard
+                                key={card._id}
+                                card={card}
+                                openModal={openModal}
+                                selectedProductId={selectedProductId}
+                                closeModal={closeModal}
+                            ></CategorizedCard>)
                         }
                     </div>
                 </TabPanel>
                 <TabPanel>
                     <div className="grid sm:grid-cols-3 gap-3 w-full mt-1">
                         {
-                            categoryToy.map(card => <CategorizedCard key={card._id} card={card}></CategorizedCard>)
+                            categoryToy.map(card => <CategorizedCard
+                                key={card._id}
+                                card={card}
+                                openModal={openModal}
+                                selectedProductId={selectedProductId}
+                                closeModal={closeModal}
+                            ></CategorizedCard>)
                         }
                     </div>
                 </TabPanel>
                 <TabPanel>
                     <div className="grid sm:grid-cols-3 gap-3 w-full mt-1">
                         {
-                            categoryToy.map(card => <CategorizedCard key={card._id} card={card}></CategorizedCard>)
+                            categoryToy.map(card => <CategorizedCard
+                                key={card._id}
+                                card={card}
+                                openModal={openModal}
+                                selectedProductId={selectedProductId}
+                                closeModal={closeModal}
+                            ></CategorizedCard>)
                         }
                     </div>
                 </TabPanel>

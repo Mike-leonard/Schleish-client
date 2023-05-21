@@ -24,10 +24,10 @@ const AllToys = () => {
 
 
     const fetchAllToys = () => {
-       setAllToys(toys)
+        setAllToys(toys)
     }
     const fetchToysBySearch = () => {
-        const url = `http://localhost:3000/toys?search=${searchText}`
+        const url = `https://schleish-server.vercel.app/toys?search=${searchText}`
         fetch(url)
             .then(res => res.json())
             .then(data => {
@@ -43,8 +43,8 @@ const AllToys = () => {
         form.reset()
     }
 
-   
-console.log(allToys, searchText)
+
+    console.log(allToys, searchText)
 
     return (
         <div className="py-8 w-full">

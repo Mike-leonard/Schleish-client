@@ -25,7 +25,7 @@ const MyToys = () => {
 
 
 
-    const url = `http://localhost:3000/toys?email=${user?.email}`
+    const url = `https://schleish-server.vercel.app/toys?email=${user?.email}`
     useEffect(() => {
         fetch(url)
             .then(res => res.json())
@@ -34,10 +34,8 @@ const MyToys = () => {
             })
     }, [url])
 
-    /* TODO: sw alert dlt confirmation */
-    /* TODO: For all the CRUD operations, show relevant toast/ notification/ anything with a meaningful message */
+    // Delete action for deleting a toy from list
     const handleDelete = id => {
-
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -48,7 +46,7 @@ const MyToys = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/toy/${id}`, {
+                fetch(`https://schleish-server.vercel.app/toy/${id}`, {
                     method: 'DELETE',
                 })
                     .then(res => res.json())
@@ -63,13 +61,14 @@ const MyToys = () => {
                             const remaining = myToy.filter(toy => toy._id !== id)
                             setMyToy(remaining)
                         }
-                    })              
+                    })
             }
         })
     }
 
+    // after updating toy name or price table need to show updated data
     const tableUpdate = (_id, updateToy) => {
-        fetch(`http://localhost:3000/toy/${_id}`, {
+        fetch(`https://schleish-server.vercel.app/toy/${_id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -96,8 +95,30 @@ const MyToys = () => {
             })
     }
 
+    const handleAscending = () => {
+        const ascUrl = `https://schleish-server.vercel.app/toys?email=${user?.email}&sort=asc`
+        fetch(ascUrl)
+            .then(res => res.json())
+            .then(data => {
+                setMyToy(data)
+            })
+    }
+
+    const handleDescending = () => {
+        const ascUrl = `https://schleish-server.vercel.app/toys?email=${user?.email}&sort=dsc`
+        fetch(ascUrl)
+            .then(res => res.json())
+            .then(data => {
+                setMyToy(data)
+            })
+    }
+
     return (
         <div className="overflow-x-auto w-full px-5">
+            <div className="flex justify-center gap-5 mb-2">
+                <button onClick={handleAscending} className="btn">Ascending</button>
+                <button onClick={handleDescending} className="btn">Descending</button>
+            </div>
             <table className="table w-full">
                 <thead>
                     <tr>

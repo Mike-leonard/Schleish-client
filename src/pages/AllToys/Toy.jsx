@@ -54,7 +54,6 @@ const Toy = ({ toy }) => {
                         <div className="py-2 px-4 text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100">#pdTag1</div>
                         <div className="py-2 px-4 ml-3 text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100">#pdTag2</div>
                     </div>
-                    {/* <button className="btn btn-outline btn-primary">Details</button> */}
                     <label htmlFor="my-modal-5" className="btn btn-outline btn-primary" onClick={() => openModal(_id)}>Details</label>
                     {selectedProductId &&
                         <PrivateRoute>

@@ -7,7 +7,7 @@ const ProductDetails = ({ selectedProductId, closeModal }) => {
 
     const [toy, setToy] = useState({})
 
-    const url = `http://localhost:3000/toy/${selectedProductId}`
+    const url = `https://schleish-server.vercel.app/toy/${selectedProductId}`
     useEffect(() => {
         fetch(url)
             .then(res => res.json())

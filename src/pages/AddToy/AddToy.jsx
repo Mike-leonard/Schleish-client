@@ -53,7 +53,7 @@ const AddToy = () => {
         }
         console.log(newToy)
 
-        fetch('http://localhost:3000/addToy', {
+        fetch('https://schleish-server.vercel.app/addToy', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newToy)
@@ -64,12 +64,12 @@ const AddToy = () => {
                 if (data.insertedId) {
                     form.reset()
                     alert('added')
-                     Swal.fire({
-                         title: 'Success!',
-                         text: 'New Toy Added successfully!',
-                         icon: 'success',
-                         confirmButtonText: 'Okay'
-                     })
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'New Toy Added successfully!',
+                        icon: 'success',
+                        confirmButtonText: 'Okay'
+                    })
                 }
             })
     }
@@ -117,14 +117,14 @@ const AddToy = () => {
                             <label htmlFor="seller-name" className={addToyLabelClassName}>
                                 Price
                             </label>
-                            <input type='number' id="seller-name" name="price" className={addToyInputStaticClassName} placeholder="Enter Toy Price" required/>
+                            <input type='number' id="seller-name" name="price" className={addToyInputStaticClassName} placeholder="Enter Toy Price" required />
                         </div>
 
                         <div className="flex flex-col md:py-0 py-4">
                             <label htmlFor="photo-url" className={addToyLabelClassName}>
                                 Quantity
                             </label>
-                            <input type='number' id="photo-url" name="quantity" className={addToyInputStaticClassName} placeholder="Enter Toy Quantity" required/>
+                            <input type='number' id="photo-url" name="quantity" className={addToyInputStaticClassName} placeholder="Enter Toy Quantity" required />
                         </div>
 
                     </div>
